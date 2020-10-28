@@ -9,3 +9,7 @@ Application to generate CSV file based off pre-requested paramenters from CLI co
 ## Generate CSV
 
 `php artisan generate:csv`
+
+## Run tests
+
+`php artisan test`
