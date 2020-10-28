@@ -40,5 +40,6 @@ class GenerateCsv extends Command
     {
         $csv = new DateController();
         $csv->buildPaymentDatesArray();
+        $csv->generateCsv();
     }
 }

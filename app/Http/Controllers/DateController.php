@@ -43,6 +43,11 @@ class DateController extends Controller
     public $bonus_date = 10;
 
     /**
+     * @var string
+     */
+    public $filename = 'payment-dates.csv';
+
+    /**
      * construct - Set date and months properties to be used in array generation
      *
      * DateController constructor.
@@ -71,7 +76,6 @@ class DateController extends Controller
                 ($this->getBonusPaymentDayForMonth())->format('Y-m-d')
             ];
         }
-        (new CsvController())->arrayToCsv($this->csv, 'payment-dates');
     }
 
     /**
@@ -106,5 +110,15 @@ class DateController extends Controller
         $tenth_of_month = $this->month->days($this->bonus_date);
         return ($tenth_of_month->isWeekend()) ?
             $tenth_of_month->nextWeekday() : $tenth_of_month;
+    }
+
+    /**
+     * generateCsv - triggers generation and storage of CSV file
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function generateCsv()
+    {
+        (new CsvController())->arrayToCsv($this->csv, $this->filename);
     }
 }
